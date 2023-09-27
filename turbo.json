@@ -1,8 +1,54 @@
 {
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
-    "compile": {
+    "build": {
+      "dependsOn": ["compile"],
       "cache": false
-    }
+    },
+    "clean": {
+      "cache": false
+    },
+    "compile": {
+      "dependsOn": ["^compile", "^generate-client"],
+      "inputs": ["src/**", "static/**", "tsconfig.json"],
+      "outputs": ["lib/**", "public/**"],
+      "outputMode": "new-only"
+    },
+    "generate-client": {
+      "env": ["PRISMA_PLATFORM"],
+      "inputs": ["migrations/**", "schema.prisma"],
+      "outputs": ["lib/**"],
+      "outputMode": "new-only"
+    },
+    "run-migrations": {
+      "dependsOn": ["^run-migrations"],
+      "inputs": ["migrations/**"],
+      "outputs": [],
+      "outputMode": "new-only"
+    },
+    "start": {
+      "dependsOn": ["compile", "^run-migrations"],
+      "cache": false,
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^compile", "^generate-client"],
+      "inputs": ["src/**", "test/**"],
+      "outputs": []
+    },
+    "tsoa-generate": {
+      "dependsOn": ["^compile", "^generate-client"],
+      "cache": false,
+      "outputs": []
+    },
+    "start:deployed": {
+      "cache": false,
+      "outputs": []
+    },
+    "acceptance": {
+      "cache": false,
+      "outputs": []
+    },
+    "app-pipeline-trigger": {}
   }
 }
