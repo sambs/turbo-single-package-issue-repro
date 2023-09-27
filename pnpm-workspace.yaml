@@ -1,2 +1,11 @@
 packages:
-  - packages/*
+  - .github/actions/*
+  - apps/*/acceptance-tests/*
+  - apps/*/helm
+  - apps/*/infra
+  - apps/*/run
+  - apps/*/services/*
+  - apps/*/shared/*
+  - shared/packages/*
+  - shared/packages/*/*
+  - shared/terraform/modules/*

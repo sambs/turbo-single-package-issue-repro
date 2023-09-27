@@ -12,9 +12,9 @@ importers:
         specifier: ^1.10.14
         version: 1.10.14
 
-  packages/a: {}
+  shared/packages/a: {}
 
-  packages/b: {}
+  shared/packages/b: {}
 
 packages:
 
