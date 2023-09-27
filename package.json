@@ -1,0 +1,13 @@
+{
+  "name": "turbo-single-package-issue-repro",
+  "version": "1.0.0",
+  "description": "Trying to reproduce a monorepo detection error",
+  "scripts": {
+    "compile": "turbo compile"
+  },
+  "author": "Sam Barnes",
+  "license": "ISC",
+  "dependencies": {
+    "turbo": "^1.10.14"
+  }
+}
